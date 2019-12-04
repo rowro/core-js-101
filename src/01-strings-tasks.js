@@ -229,8 +229,9 @@ function getRectangleString(/* width, height */) {
  *    => 'NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm'
  *
  */
-function encodeToRot13(/* str */) {
-  throw new Error('Not implemented');
+function encodeToRot13(str) {
+  const replacer = (match) => String.fromCharCode(match.charCodeAt(0) + (match.toUpperCase() <= 'M' ? 13 : -13));
+  return str.replace(/[A-Z]/ig, replacer);
 }
 
 /**
