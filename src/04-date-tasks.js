@@ -44,7 +44,7 @@ function parseDataFromIso8601(value) {
  * Please find algorithm here: https://en.wikipedia.org/wiki/Leap_year#Algorithm
  *
  * @param {date} date
- * @return {bool}
+ * @return {boolean}
  *
  * @example :
  *    Date(1900,1,1)    => false
@@ -53,8 +53,9 @@ function parseDataFromIso8601(value) {
  *    Date(2012,1,1)    => true
  *    Date(2015,1,1)    => false
  */
-function isLeapYear(/* date */) {
-  throw new Error('Not implemented');
+function isLeapYear(date) {
+  const year = date.getFullYear();
+  return ((year % 4 === 0) && (year % 100 !== 0)) || (year % 400 === 0);
 }
 
 
