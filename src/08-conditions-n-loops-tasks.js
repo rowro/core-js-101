@@ -171,9 +171,10 @@ function isInsideCircle(/* circle, point */) {
  *   'entente' => null
  */
 function findFirstSingleChar(str) {
-  return str.split('').filter(
-    (item, index, arr) => arr.indexOf(item) === arr.lastIndexOf(item),
-  )[0];
+  return str.split('')
+    .filter(
+      (item, index, arr) => arr.indexOf(item) === arr.lastIndexOf(item),
+    )[0];
 }
 
 
@@ -222,7 +223,9 @@ function getIntervalString(a, b, isStartIncluded, isEndIncluded) {
  * 'noon' => 'noon'
  */
 function reverseString(str) {
-  return str.split('').reverse().join('');
+  return str.split('')
+    .reverse()
+    .join('');
 }
 
 
@@ -239,7 +242,10 @@ function reverseString(str) {
  *   34143 => 34143
  */
 function reverseInteger(num) {
-  return Number(num.toString().split('').reverse().join(''));
+  return Number(num.toString()
+    .split('')
+    .reverse()
+    .join(''));
 }
 
 
@@ -282,7 +288,9 @@ function isCreditCardNumber(/* ccn */) {
  *   165536 (1+6+5+5+3+6 = 26,  2+6 = 8) => 8
  */
 function getDigitalRoot(num) {
-  const n = num.toString().split('').reduce((res, item) => res + Number(item), 0);
+  const n = num.toString()
+    .split('')
+    .reduce((res, item) => res + Number(item), 0);
   if (n.toString().length > 1) {
     return getDigitalRoot(n);
   }
@@ -376,8 +384,15 @@ function getCommonDirectoryPath(/* pathes */) {
  *                         [ 6 ]]
  *
  */
-function getMatrixProduct(/* m1, m2 */) {
-  throw new Error('Not implemented');
+function getMatrixProduct(m1, m2) {
+  const result = new Array(m1.length).fill(0)
+    .map(() => new Array(m2[0].length).fill(0));
+
+  return result.map((row, i) => row.map(
+    (val, j) => m1[i].reduce(
+      (sum, elm, k) => sum + (elm * m2[k][j]), 0,
+    ),
+  ));
 }
 
 
