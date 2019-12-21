@@ -209,9 +209,29 @@ function extractEmails(str) {
  *             '└──────────┘\n'
  *
  */
-function getRectangleString(/* width, height */) {
-  throw new Error('Not implemented');
+function getRectangleString(width, height) {
+  let res = '';
+
+  for (let x = 1; x <= height; x += 1) {
+    for (let y = 1; y <= width; y += 1) {
+      if (x === 1 && y === 1) res += '┌';
+      if (x === 1 && y === width) res += '┐';
+
+      if ((x > 1 && x < height) && (y === 1 || y === width)) res += '│';
+
+      if ((x !== 1 && x !== height) && (y !== 1 && y !== width)) res += ' ';
+
+      if ((x === 1 || x === height) && (y > 1 && y < width)) res += '─';
+
+      if (x === height && y === 1) res += '└';
+      if (x === height && y === width) res += '┘';
+      if (y === width) res += '\n';
+    }
+  }
+
+  return res;
 }
+
 
 /**
  * Encode specified string with ROT13 cipher
