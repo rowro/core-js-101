@@ -335,10 +335,33 @@ function getDigitalRoot(num) {
  *   '{)' = false
  *   '{[(<{[]}>)]}' = true
  */
-function isBracketsBalanced(/* str */) {
-  throw new Error('Not implemented');
-}
+function isBracketsBalanced(str) {
+  const brackets = {
+    '{': '}',
+    '[': ']',
+    '(': ')',
+    '<': '>',
+  };
 
+  const closing = Object.values(brackets);
+  const stack = [];
+
+  for (let i = 0; i < str.length; i += 1) {
+    const symbol = str[i];
+
+    if (brackets[symbol]) {
+      stack.push(brackets[symbol]);
+    }
+    if (closing.includes(symbol)) {
+      const bracket = stack.pop();
+      if (bracket !== symbol) {
+        return false;
+      }
+    }
+  }
+
+  return stack.length === 0;
+}
 
 /**
  * Returns the string with n-ary (binary, ternary, etc, where n <= 10)
@@ -368,7 +391,7 @@ function toNaryString(num, n) {
 /**
  * Returns the commom directory path for specified array of full filenames.
  *
- * @param {array} pathes
+ * @param {array} paths
  * @return {string}
  *
  * @example:
